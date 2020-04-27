@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>js_04_ifelse</title>
+  </head>
+  <body>
+    <!-- Objetivo: ler dois valores, e, independente da ordem em que foram digitados, apresentá-los
+    em ordem crescente. -->
+
+      <label for="n1">Primeiro número: </label>
+      <input type="text" name="n1" id="n1" oninput="mostrar()">
+      <br>
+      <label for="n2">Segundo número: </label>
+      <input type="text" name="n2" id="n2" oninput="mostrar()">
+
+    <br>
+    <hr>
+    <div id="show"></div>
+    <br>
+    <button name="button" onclick="classificar()">CALCULAR</button>
+    <br>
+    <div id="resultado"></div>
+
+    <script type="text/javascript">
+
+      var jsn1;
+      var jsn2;
+
+
+      function mostrar(){
+
+        // Entrada de Dados
+        jsn1 = document.getElementById('n1').value;
+        jsn2 = document.getElementById("n2").value;
+
+      // Saída de dados sem classificação
+        if (isNaN(jsn1) | isNaN(jsn2)) {
+         document.getElementById("show").innerHTML = 'Os dois valores inseridos devem ser números.';
+         console.log(jsn1);
+        }
+        else {
+         document.getElementById("show").innerHTML = 'Primeiro número: ' + jsn1 + '<br>Segundo número: ' + jsn2;
+        }
+      }
+
+      // Saída de dados com classificação por condicional scomposta (if...else)
+      function classificar(){
+
+        if (jsn1 > jsn2){
+          document.getElementById('resultado').innerHTML = "<p><b>Classificação em ordem crescente: </b>" + jsn1 + " e " + jsn2 + "</p>"
+        }
+        else {
+          document.getElementById('resultado').innerHTML = "<p><b>Classificação em ordem crescente: </b>" + jsn2 + " e " + jsn1 + "</p>"
+        }
+
+
+      }
+
+    </script>
+
+  </body>
+</html>

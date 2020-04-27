@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>js04_Salario1.html</title>
+  </head>
+  <body>
+    <!-- Objetivo: Calcular o salário líquido de um funcionário que trabalha por hora (horista) -->
+
+    <script type="text/javascript">
+
+      var qht;
+      var vht;
+      var inss;
+      var tdes;
+      var sb;
+      var sl;
+
+
+      function mostrar(){
+
+        // Entrada de Dados
+        qht = document.getElementById('qht').value;
+        vht = document.getElementById("vht").value;
+        inss = document.getElementById("inss").value;
+
+        // Saída de dados com consistência de valores
+
+        document.getElementById('show').innerHTML = "<p><b>DEMONSTRATIVO PARA CÁLCULO DO SALÁRIO LÍQUIDO</b>";
+        document.getElementById('show').innerHTML += "<br>Quantidade de horas trabalhadas: " + qht;
+        document.getElementById('show').innerHTML += "<br>Valor da hora trabalhada: " + vht;
+        document.getElementById('show').innerHTML += "<br>Percentual de desconto do INSS: " + inss;
+        document.getElementById('show').innerHTML += "<hr>";
+
+        if (qht > 180) {
+          document.getElementById('qhmax').innerHTML = "Valor máximo excedido!";
+        }
+        else if (qht < 135) {
+          document.getElementById('qhmax').innerHTML = "Valor mínimo inválido!";
+        }
+        else {
+          document.getElementById('qhmax').innerHTML = "";
+        }
+
+        if (vht > 80) {
+          document.getElementById('vhmax').innerHTML = "Valor máximo excedido!";
+        }
+        else if (vht < 25) {
+          document.getElementById('vhmax').innerHTML = "Valor mínimo inválido!";
+        }
+        else {
+          document.getElementById('vhmax').innerHTML = "";
+        }
+
+        if (inss > 15) {
+          document.getElementById('inssmax').innerHTML = "Valor máximo excedido!";
+        }
+        else if (inss < 5) {
+          document.getElementById('inssmax').innerHTML = "Valor mínimo inválido!";
+        }
+        else {
+          document.getElementById('inssmax').innerHTML = "";
+        }
+
+      }
+
+
+
+      // Saída de Dados calculados
+
+      function calcular(){
+
+        // Processamento dos Dados
+
+        sb = qht*vht;
+        tdes = (inss/100)*sb;
+        sl = sb-tdes;
+
+        if(isNaN(qht) || isNaN(vht) || isNaN(inss)){
+          document.getElementById('resultado').innerHTML = "<br><p style='color:#ff0000;'>Insira números nos campos.</p>";
+        }else{
+        document.getElementById('resultado').innerHTML = "<br>Salário bruto: " + sb + "<br>Salário Líqudo: " + vht;
+
+
+        // Saída de Dados com aninhamento de if
+        if (sl > 10500) {
+          document.getElementById('resultado').innerHTML += "<br><p style='color:#228B22;'>Salário Elevado! XD</p>";
+        }
+        else {
+          if (sl > 6000) {
+            document.getElementById('resultado').innerHTML += "<br><p style='color:#228B22;'>Salário Satisfatório! :D</p>";
+          }
+          else {
+            if (sl > 3000) {
+              document.getElementById('resultado').innerHTML += "<br><p style='color:#999900;'>Salário Moderado. :)</p>";
+            }
+            else {
+              document.getElementById('resultado').innerHTML += "<br><p style='color:#ff0000;'>Salário Insatisfatório! :(</p>";
+            }
+          }
+        }
+        }
+      }
+
+
+    </script>
+
+          <label for="n1">Quantidade de horas trabalhadas por mês (135 a 180): </label>
+          <input type="text" name="qht" id="qht" oninput="mostrar()" value=""><span id='qhmax' style="color: #ff0000;"></span>
+          <br>
+          <label for="vht">Valor da hora trabalhada (25 a 80): </label>
+          <input type="text" name="vht" id="vht" oninput="mostrar()" value=""><span id='vhmax' style="color: #ff0000;"></span>
+          <br>
+          <label for="inss">Percentual de desconto do INSS (5 a 15): </label>
+          <input type="text" name="inss" id="inss" oninput="mostrar()" value=""><span id='inssmax' style="color: #ff0000;"></span>
+
+        <br>
+        <hr>
+        <div id="show"></div>
+        <br>
+        <button name="button" onclick="calcular()">CALCULAR</button>
+        <br>
+        <div id="resultado"></div>
+  </body>
+</html>

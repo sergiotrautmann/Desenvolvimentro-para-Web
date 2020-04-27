@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>js04_Salario2.html do..while</title>
+  </head>
+  <body>
+    <!-- Objetivo: Calcular o salário líquido de um funcionário que trabalha por hora (horista) -->
+
+
+            <hr>
+
+            <br>
+
+    <script type="text/javascript">
+
+      var qht;
+      var vht;
+      var inss;
+      var tdes;
+      var sb;
+      var sl;
+      var js_resposta = true;
+
+   do{
+    // Entrada de Dados
+    qht = parseFloat(window.prompt("Quantidade de horas trabalhadas (135 a 180): "));
+    vht = parseFloat(window.prompt("Valor da hora trabalhada: (25 a 80)"));
+    inss = parseFloat(window.prompt("Percentual de desconto do INSS: (5 a 15)"));
+
+    sb = qht*vht;
+    tdes = (inss/100)*sb;
+    sl = sb-tdes;
+
+    // Saída de dados com consistência de valores
+    document.write("<p><b>DEMONSTRATIVO PARA CÁLCULO DO SALÁRIO LÍQUIDO</b>");
+
+    document.write("<br>Quantidade de horas trabalhadas: " + qht);
+    if (qht > 180) {
+      document.write("<span id='qhmax' style='color: #ff0000;'>Valor máximo excedido!</span>");
+    }
+    else if (qht < 135) {
+      document.write("<span id='qhmax' style='color: #ff0000;'>Abaixo do valor mínimo!</span>");
+    }
+
+    document.write("<br>Valor da hora trabalhada: " + vht);
+    if (vht > 80) {
+      document.write("<span id='qhmax' style='color: #ff0000;'>Valor máximo excedido!</span>");
+      }
+      else if (vht < 25) {
+        document.write("<span id='qhmax' style='color: #ff0000;'>Abaixo do valor mínimo!</span>");
+      }
+
+    document.write("<br>Percentual de desconto do INSS: " + inss);
+    if (inss > 15) {
+      document.write("<span id='qhmax' style='color: #ff0000;'>Valor máximo excedido!</span>");
+      }
+      else if (inss < 5) {
+        document.write("<span id='qhmax' style='color: #ff0000;'>Abaixo do valor mínimo!</span>");
+      }
+
+
+      // Saída de Dados calculados
+
+        if(isNaN(qht) || isNaN(vht) || isNaN(inss)){
+          document.write("<br><p style='color:#ff0000;'>Insira valores válidos nos campos.</p>");
+        }else{
+        document.write("<br>Salário bruto: " + sb + "<br>Salário Líqudo: " + vht);
+
+
+        // Saída de Dados com aninhamento de if
+        if (sl > 10500) {
+          document.write("<br><p style='color:#228B22;'>Salário Elevado! XD</p>");
+        }
+        else {
+          if (sl > 6000) {
+            document.write("<br><p style='color:#228B22;'>Salário Satisfatório! :D</p>");
+          }
+          else {
+            if (sl > 3000) {
+              document.write("<br><p style='color:#999900;'>Salário Moderado. :)</p>");
+            }
+            else {
+              document.write("<br><p style='color:#ff0000;'>Salário Insatisfatório! :(</p>");
+            }
+          }
+        }
+        }
+      document.write("<hr>");
+      js_resposta = window.confirm("Deseja continuar?");
+}
+while (js_resposta == true);
+
+
+    </script>
+
+  </body>
+</html>
